@@ -1,129 +1,194 @@
-# 📡 NetworkDash - 4G LTE Router Signal Monitoring Dashboard
+<p align="center">
+  <img src="public/images/logo.png" alt="NetworkDash Logo" width="540" />
+</p>
 
-NetworkDash is a modern, lightweight **4G LTE Router Signal & Telemetry Monitoring Dashboard** built with **Laravel 12**, **Livewire 3**, **Alpine.js**, **Tailwind CSS**, and **Chart.js**.
+<p align="center">
+  <strong>⚡ Real-Time 4G/LTE Router Signal Telemetry Dashboard & Network Diagnostics Platform</strong>
+</p>
 
-It delivers plain-English, real-time cellular diagnostics in a **Dark Bento Box** interface designed to transform complex RF parameters into clear, actionable network intelligence.
-
----
-
-## ✨ Features Overview
-
-### 1. 🎛️ Dark Bento Box Dashboard
-- **4 Primary Radio Metrics:** RSRP (Signal Strength), RSSI (Received Power), RSRQ (Signal Quality), and SINR (Signal-to-Noise Ratio) with delta trends against previous readings.
-- **Connection Health Score (0–100):** Weighted multi-variable connection score with plain-English link health analysis.
-- **RF Interference & Noise Detection:** Automatic detection of strong signal with high interference (e.g. good RSRP with low SINR).
-- **Horizontal Signal Gauges:** Normalized visual power meters for RSRP, RSRQ, and SINR.
-- **Carrier & Radio Parameters:** LTE Band, Downlink Bandwidth, EARFCN, Transmission Mode (e.g., TM8), TX Power, RRC State, DL MCS, and CQI.
-- **Cell Tower Diagnostics with 1-Click Copy:** eNodeB ID, Sector Cell ID, Global Cell ID (ECI), and Physical Cell ID (PCI).
-- **Historical Statistical Aggregates:** Best, Worst, and Average computations across `15M`, `30M`, `1H`, and `24H` windows.
-
-### 2. 🔌 Real Hardware Driver Integration (ZLT / Tozed / S10 / P11X / P21)
-- **Direct Live Hardware Polling:** Connects to router web gateways (e.g. `http://192.168.0.1/cgi-bin/http.cgi`) via MD5 authentication.
-- **Automated Parameter Extraction:** Real-time decoding of radio parameters and automatic calculation of eNodeB base station and local cell sector ID.
-- **Session Token Management:** Intelligent session caching with automatic relogin handling.
-
-### 3. 📈 Interactive Signal Telemetry Chart
-- **Lightweight Chart.js Splines:** Smooth vertical gradients and dark grid lines.
-- **Dynamic Metric Switcher:** Switch between `RSRP` (Gold), `SINR` (Emerald), `RSRQ` (Cyan), and `RSSI` (Violet) on the fly.
-- **Timeframe Selector:** `15M`, `30M`, `1H`, `6H`, `24H`, and `7D`.
-
-### 4. 🔔 Connection Event Tracker
-- **Automated Handover Detection:** Tracks cell tower handovers and carrier band switches.
-- **Signal Quality Alerts:** Logs degradation to Poor and transitions to Excellent.
-- **Visual Delta Badges:** Shows previous vs. new parameter states (e.g. `B40 → B3`).
-
-### 5. 📜 Historical Telemetry Log & CSV Export
-- **Multi-Filter Telemetry Grid:** Filter by Target Router, Timeframe, Quality Rating, and live keyword search.
-- **Column Sorting:** Sort by Timestamp, RSRP, RSSI, RSRQ, and SINR.
-- **Memory-Safe CSV Stream Export:** Chunked streamed CSV export suitable for large datasets on cPanel/shared hosting.
-
-### 6. ⚙️ Configurable Thresholds & Settings
-- **Signal Boundary GUI:** Custom cutoffs for RSRP, RSSI, RSRQ, and SINR with boundary validation.
-- **Scoring Weights:** Interactive percentage sliders for RSRP, SINR, and RSRQ with $100\%$ sum validation.
-- **Privacy & Masking:** Sensitive hardware identifier masking (IMEI, MAC, IMSI, ICCID) with unmask toggle.
-- **Reset to Defaults:** One-click factory reset.
-
-### 7. ⏱️ Auto-Refresh & Background Polling
-- **Cadence Options:** `OFF (Manual)`, `10 Seconds`, `30 Seconds`, `1 Minute`, `5 Minutes`.
-- **Session Persistence:** Remembers user refresh preference across visits.
-- **Client-Side Live Clock:** Real-time ticking relative time counter without network overhead.
-
-### 8. 📱 Mobile Optimization
-- **Responsive Breakpoints:** Optimized for `360px`, `390px`, `430px`, `768px`, `1024px`, and `1440px+`.
-- **Single-Column Mobile Cards:** Mobile-optimized card layout replacing horizontal scrolling tables.
-- **Mobile Bottom Navigation Bar:** Quick navigation docked to the screen bottom for touch ergonomics.
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 12" />
+  <img src="https://img.shields.io/badge/Livewire-3.x-FB70A9?style=for-the-badge&logo=livewire&logoColor=white" alt="Livewire 3" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Chart.js-4.x-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="Chart.js" />
+  <img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.2+" />
+  <img src="https://img.shields.io/badge/License-MIT-F2C94C?style=for-the-badge" alt="MIT License" />
+</p>
 
 ---
 
-## 🚀 Installation & Local Setup
+## 🌟 Overview
+
+**NetworkDash** is an enterprise-grade, high-performance web dashboard built with **Laravel 12**, **Livewire 3**, and **Chart.js**. It connects directly to cellular router web gateways (such as **ZLT P11X / Tozed**, Huawei, and standard LTE CPE hardware) to extract, record, and visualize real-time radio frequency telemetry without requiring cloud relays or external services.
+
+Designed with a sleek, modern **cyber-dark Bento Grid** aesthetic, NetworkDash gives network engineers, homelab enthusiasts, and remote workers full visibility over LTE link health, cell tower handovers, and signal cleanliness.
+
+---
+
+## 📸 Screenshots
+
+### 🎛️ Live Bento Dashboard & Multi-Metric Telemetry
+> *Granular Drag-and-Drop Bento Grid featuring real-time RSRP, RSSI, RSRQ, and SINR gauges, live multi-series chart, mobile network WAN toggles, and cell tower telemetry.*
+
+![Dashboard Preview](public/images/screenshots/dashboard.png)
+
+---
+
+### 📊 Historical Signal Telemetry & Handovers
+> *Filterable historical logs with CSV export, search by Cell ID / eNodeB / Band, and dynamic timeline visualization.*
+
+![History Preview](public/images/screenshots/history.png)
+
+---
+
+### 📡 Multi-Router Management & Live Connection Testing
+> *Connect multiple LTE gateways, test router credentials pre-save, and switch active router views seamlessly.*
+
+![Routers Preview](public/images/screenshots/routers.png)
+
+---
+
+## 🚀 Key Features
+
+### 1. 📈 Real-Time Radio Signal Telemetry
+- **RSRP (Reference Signal Received Power):** Direct signal strength measurement with dynamic threshold rating.
+- **RSSI (Received Signal Strength Indicator):** Total carrier power including noise and adjacent channels.
+- **RSRQ (Reference Signal Received Quality):** Radio link quality indicator.
+- **SINR (Signal-to-Interference-plus-Noise Ratio):** Signal cleanliness metric for bandwidth optimization.
+- **★ "All in One" 4-in-1 Combo Graph:** Dual-axis chart plotting Power (`dBm`) and Quality (`dB`) simultaneously with interactive toggle legends and millisecond-accurate local timezone x-axis ticks.
+
+### 2. 🔀 100% Granular Drag & Drop Bento Customizer
+- Rearrange **every single individual box** across a 12-column modular grid using **SortableJS**.
+- Click **"Drag & Drop Boxes"** to show instant grab handles (`⠿ Move [Box]`).
+- Auto-saves layout order to local session and database with a single-click **"Reset Default Order"** button.
+
+### 3. 🌐 Mobile Network Status & Quick WAN Control
+- Top-level live WAN connectivity indicator with animated heartbeat pulse.
+- One-click **"Connect WAN"** and **"Disconnect WAN"** action buttons communicating directly with router CGI endpoints.
+
+### 4. 🗼 Cell Tower Diagnostics & One-Click Copy
+- Diagnostic readouts: **eNodeB ID**, **Local Cell ID**, **Global Cell ID (ECGI)**, **Physical Cell ID (PCI)**, **EARFCN frequency carrier**, and **Operating Band**.
+- One-click copy interaction on all diagnostic codes for rapid cell-tower lookup on CellMapper or OpenCelliD.
+
+### 5. 🔔 Automated Connection Event Timeline
+- Tracks cell sector handovers, frequency band switches, link drops, and signal degradation in real time.
+- Configurable auto-polling engine (10s, 30s, 1m, 5m, or manual).
+
+### 6. 🔒 Privacy-First & Zero Hardcoded Secrets
+- All sensitive hardware identifiers (IMEI, IMSI, ICCID, MAC) are masked safely in UI displays.
+- Zero tracking, zero telemetry sent to third parties, 100% self-hosted on your local LAN.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Backend Framework** | Laravel 12 (PHP 8.2+) |
+| **Reactive UI Engine** | Livewire 3 (Zero-bundle reactivity & DOM morphing) |
+| **Styling & Theme** | Tailwind CSS with custom Bento & Obsidian Dark palette |
+| **Interactive Charting** | Chart.js 4.x with custom gradients & dual Y-axis scales |
+| **Drag and Drop** | SortableJS |
+| **Icons** | Lucide Icons |
+| **Supported Databases** | MySQL, SQLite, PostgreSQL, MariaDB |
+
+---
+
+## 🏁 Quick Start Guide
 
 ### Prerequisites
-- PHP 8.2 or 8.3+ with `pdo_mysql`, `curl`, `mbstring`, `openssl`
-- MySQL 8.0+ / MariaDB
-- Composer & Node.js (v18+)
-
-### Step-by-Step Setup
-
-1. **Clone repository & enter directory:**
-   ```bash
-   cd c:\xampp\htdocs\NetworkDash
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   composer install
-   npm install
-   ```
-
-3. **Configure Environment:**
-   Update `.env` database and application settings:
-   ```ini
-   APP_NAME=NetworkDash
-   APP_ENV=local
-   APP_DEBUG=false
-   APP_URL=http://127.0.0.1:8001
-
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3307
-   DB_DATABASE=networkdash
-   DB_USERNAME=root
-   DB_PASSWORD=1234
-   ```
-
-4. **Run Migrations & Seeders:**
-   ```bash
-   php artisan migrate --seed
-   ```
-
-5. **Build Frontend Assets:**
-   ```bash
-   npm run build
-   ```
-
-6. **Start Application:**
-   ```bash
-   php artisan serve --port=8001
-   ```
-   Open `http://127.0.0.1:8001/` in your browser.
+- **PHP >= 8.2** with `pdo`, `mbstring`, `openssl`, `curl` extensions.
+- **Composer >= 2.x**
+- **Node.js >= 18.x** & **NPM**
+- A compatible LTE Router connected via Ethernet or Wi-Fi (e.g. `192.168.0.1` or `192.168.8.1`).
 
 ---
 
-## 🔑 Default Administrator Credentials
-- **Email:** `admin@networkdash.local`
-- **Password:** `admin1234`
+### Step-by-Step Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/zatokaa/NetworkDash.git
+cd NetworkDash
+
+# 2. Install PHP dependencies
+composer install
+
+# 3. Install NPM dependencies & build frontend assets
+npm install
+npm run build
+
+# 4. Set up environment configuration
+cp .env.example .env
+php artisan key:generate
+
+# 5. Configure your database in .env (SQLite or MySQL)
+# For quick SQLite setup:
+touch database/database.sqlite
+
+# 6. Run database migrations & seed default sample data
+php artisan migrate --seed
+
+# 7. Start the development server
+php artisan serve --port=8000
+```
+
+Open your browser and navigate to: **`http://localhost:8000`**
 
 ---
 
-## 📦 cPanel & Shared Hosting Deployment Guide
+### 🔑 Default Demo Login
 
-1. Upload files to your cPanel `public_html` (or subfolder).
-2. Point your cPanel Document Root to the `public/` directory.
-3. Import the MySQL database and update `.env` with your database credentials.
-4. Set permissions on `storage/` and `bootstrap/cache/` (`chmod -R 775`).
-5. Run `php artisan optimize` for production caching.
+| Field | Value |
+|---|---|
+| **Email** | `admin@example.com` |
+| **Password** | `admin1234` |
+
+*(You can modify credentials or create new administrator accounts in the Settings panel.)*
 
 ---
 
-## 🛡️ License
-Built for personal and enterprise 4G LTE signal telemetry monitoring.
+## 📡 Router Configuration
+
+NetworkDash supports **direct HTTP CGI polling**:
+
+1. Navigate to **Routers** (`/routers`).
+2. Click **"Add New Router"**.
+3. Select your router driver (e.g., **ZLT P11X / Tozed Gateway**).
+4. Enter the Gateway IP (default `192.168.0.1`), username, and password.
+5. Click **"Save Router"** — NetworkDash automatically validates the credentials with the hardware before storing!
+
+---
+
+## 📖 LTE Radio Metrics Reference Guide
+
+| Metric | Full Name | Ideal Range | Good Range | Weak / Degraded |
+|---|---|---|---|---|
+| **RSRP** | Reference Signal Received Power | `>= -80 dBm` | `-80 to -100 dBm` | `< -105 dBm` |
+| **SINR** | Signal to Interference & Noise Ratio | `>= 20 dB` | `13 to 20 dB` | `< 5 dB` (High Noise) |
+| **RSRQ** | Reference Signal Received Quality | `>= -10 dB` | `-10 to -15 dB` | `< -16 dB` |
+| **RSSI** | Received Signal Strength Indicator | `>= -65 dBm` | `-65 to -85 dBm` | `< -90 dBm` |
+
+---
+
+## 🤝 Contributing
+
+Contributions, feature requests, and issue reports are very welcome!
+
+1. Fork the Project (`https://github.com/zatokaa/NetworkDash/fork`)
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See `LICENSE` for more information.
+
+---
+
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/zatokaa"><strong>zatokaa</strong></a>
+</p>
