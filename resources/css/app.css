@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+
+@theme {
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    --color-lte-bg: #0B0D0F;
+    --color-lte-card: #111418;
+    --color-lte-surface: #171B20;
+    --color-lte-border: #232931;
+    --color-lte-border-light: #2D343F;
+    
+    --color-lte-gold: #D4A017;
+    --color-lte-yellow: #F2C94C;
+    --color-lte-text-primary: #F5F5F5;
+    --color-lte-text-secondary: #9CA3AF;
+    --color-lte-text-muted: #6B7280;
+
+    --color-lte-green: #10B981;
+    --color-lte-cyan: #06B6D4;
+    --color-lte-red: #EF4444;
+}
+
+@layer base {
+    body {
+        background-color: #0B0D0F;
+        color: #F5F5F5;
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0B0D0F;
+}
+::-webkit-scrollbar-thumb {
+    background: #232931;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #374151;
+}
