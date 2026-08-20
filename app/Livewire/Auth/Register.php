@@ -14,11 +14,14 @@ class Register extends Component
     public string $password = '';
     public string $password_confirmation = '';
 
-    protected $rules = [
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users,email',
-        'password' => 'required|string|min:8|confirmed',
-    ];
+    protected function rules(): array
+    {
+        return [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:8|confirmed',
+        ];
+    }
 
     public function updated($propertyName)
     {
@@ -29,10 +32,15 @@ class Register extends Component
     {
         $this->validate();
 
+        if (User::findByEmail($this->email)) {
+            $this->addError('email', 'An account with this email already exists.');
+            return;
+        }
+
         $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
-            'password' => Hash::make($this->password),
+            'password' => $this->password,
         ]);
 
         Auth::login($user);

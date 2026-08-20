@@ -59,7 +59,7 @@ class SignalDataService
         ]);
 
         // Check and log connection events if changes occurred
-        if ($previousReading && Schema::hasTable('connection_events')) {
+        if ($previousReading) {
             $this->detectAndLogEvents($router, $previousReading, $reading);
         }
 

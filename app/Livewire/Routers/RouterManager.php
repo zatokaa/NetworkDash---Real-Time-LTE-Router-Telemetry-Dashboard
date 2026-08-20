@@ -201,13 +201,8 @@ class RouterManager extends Component
 
     public function render()
     {
-        $query = Router::query();
-        if (\Illuminate\Support\Facades\Schema::hasTable('signal_readings')) {
-            $query->withCount('signalReadings');
-        }
-
         return view('livewire.routers.router-manager', [
-            'routers' => $query->latest()->get(),
+            'routers' => Router::all(),
             'activeRouter' => Router::getActive(),
         ])->layout('layouts.app', ['title' => 'Router Management']);
     }
