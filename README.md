@@ -23,7 +23,7 @@
 **NetworkDash** is an enterprise-grade, high-performance web dashboard built with **Laravel 12**, **Livewire 3**, and **Chart.js**. It connects directly to cellular router web gateways (such as **ZLT P11X / Tozed**, Huawei, and standard LTE CPE hardware) to extract, record, and visualize real-time radio frequency telemetry without requiring cloud relays or external services.
 
 ### 💾 100% Database-Free Flat-File JSON Engine
-NetworkDash uses a **pure JSON flat-file storage engine** (`storage/app/data/*.json`). There is **zero database installation required** (no MySQL to install, no SQLite database files, and no database configuration needed). Just upload and run on any cPanel, shared hosting, local computer, or micro-server!
+NetworkDash runs entirely on a **pure JSON flat-file storage engine** (`storage/app/data/*.json`). There is **zero database installation required** (no MySQL server to configure, no SQLite files, and no database migrations). Just upload and run on any cPanel, shared hosting, local computer, or micro-server!
 
 ---
 
@@ -53,8 +53,8 @@ NetworkDash uses a **pure JSON flat-file storage engine** (`storage/app/data/*.j
 ## 🚀 Key Features
 
 ### 1. 📁 Zero Database Installation (Flat-File JSON Storage)
-- Stores all router configurations, telemetry records, events, settings, and users in clean JSON files (`storage/app/data/`).
-- 100% portable and easy to backup—just copy the folder or edit `.json` files directly.
+- Stores all router configurations, telemetry records, events, settings, and user accounts in clean JSON files (`storage/app/data/`).
+- 100% portable and easy to backup—simply copy the folder or inspect `.json` files directly.
 
 ### 2. 📈 Real-Time Radio Signal Telemetry
 - **RSRP (Reference Signal Received Power):** Direct signal strength measurement with dynamic threshold rating.
@@ -65,7 +65,7 @@ NetworkDash uses a **pure JSON flat-file storage engine** (`storage/app/data/*.j
 
 ### 3. 🔀 100% Granular Drag & Drop Bento Customizer
 - Rearrange **every single individual box** across a 12-column modular grid using **SortableJS**.
-- Click **"Drag & Drop Boxes"** to show instant grab handles (`⠿ Move [Box]`).
+- Click **"Drag & Drop Boxes"** to reveal grab handles (`⠿ Move [Box]`).
 - Auto-saves layout order to local session and settings file with a single-click **"Reset Default Order"** button.
 
 ### 4. 🌐 Mobile Network Status & Quick WAN Control
@@ -78,6 +78,7 @@ NetworkDash uses a **pure JSON flat-file storage engine** (`storage/app/data/*.j
 
 ### 6. 🔔 Automated Connection Event Timeline
 - Tracks cell sector handovers, frequency band switches, link drops, and signal degradation in real time.
+- Displays the last 5 high-priority network events with local timestamps.
 - Configurable auto-polling engine (10s, 30s, 1m, 5m, or manual).
 
 ### 7. 🔒 Privacy-First & Zero Hardcoded Secrets
@@ -100,7 +101,7 @@ NetworkDash uses a **pure JSON flat-file storage engine** (`storage/app/data/*.j
 
 ---
 
-## 🏁 Quick Start Guide
+## 🏁 Quick Start Guide (Local Setup)
 
 ### Prerequisites
 - **PHP >= 8.2** with `mbstring`, `openssl`, `curl` extensions.
@@ -114,8 +115,8 @@ NetworkDash uses a **pure JSON flat-file storage engine** (`storage/app/data/*.j
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/zatokaa/NetworkDash.git
-cd NetworkDash
+git clone https://github.com/zatokaa/NetworkDash-RealTimeLTERouterTelemetryDashboard.git
+cd NetworkDash-RealTimeLTERouterTelemetryDashboard
 
 # 2. Install PHP dependencies
 composer install
@@ -128,11 +129,26 @@ npm run build
 cp .env.example .env
 php artisan key:generate
 
-# 5. Start the development server (No DB setup needed!)
+# 5. Start the development server (No database setup needed!)
 php artisan serve --port=8000
 ```
 
 Open your browser and navigate to: **`http://localhost:8000`**
+
+---
+
+## 🌐 Deploying to cPanel / Shared Hosting (Zero Database Setup!)
+
+Because NetworkDash runs on a **100% Database-Free JSON Storage Engine**, deploying to cPanel takes under 2 minutes:
+
+1. **Compile Assets Locally:** Run `npm run build` and `composer install --optimize-autoloader --no-dev`.
+2. **Zip and Upload:** Upload your project ZIP file to `/home/username/networkdash/` in cPanel File Manager and extract it.
+3. **Point Document Root:** In cPanel Domains/Subdomains, point your domain's Document Root to:
+   ```
+   /home/username/networkdash/public
+   ```
+4. **Configure `.env`:** Copy `.env.example` to `.env` inside `/home/username/networkdash/` and set your `APP_URL`.
+5. **Open in Browser:** Navigate to your domain and log in immediately!
 
 ---
 
@@ -174,7 +190,7 @@ NetworkDash supports **direct HTTP CGI polling**:
 
 Contributions, feature requests, and issue reports are very welcome!
 
-1. Fork the Project (`https://github.com/zatokaa/NetworkDash/fork`)
+1. Fork the Project (`https://github.com/zatokaa/NetworkDash-RealTimeLTERouterTelemetryDashboard/fork`)
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
